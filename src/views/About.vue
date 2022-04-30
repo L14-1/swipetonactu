@@ -1,5 +1,17 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <articlesDisplayer />
   </div>
 </template>
+
+<script>
+
+import articlesDisplayer from '@/components/articlesDisplayerComponent.vue'
+
+export default {
+  name: 'About',
+  components: {
+    articlesDisplayer,
+  },
+}
+</script>
