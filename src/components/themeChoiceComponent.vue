@@ -58,10 +58,10 @@ export default {
       let selectedArray = this.selectedThemes;
       if (selectedArray.length == 0) {
         window.localStorage.setItem('selectedThemes', JSON.stringify(['sport']));
-        this.$router.push('/about');
+        this.$router.push('/actu');
       } else {
         window.localStorage.setItem('selectedThemes', JSON.stringify(selectedArray));
-        this.$router.push('/about');
+        this.$router.push('/actu');
       }
     }
   }

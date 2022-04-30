@@ -30,7 +30,6 @@ export default {
     }),
   },
   mounted() {
-    
     let selectedArticles = JSON.parse(window.localStorage.getItem('selectedThemes'))
     this.$store.dispatch("getSpecifiedArticles", selectedArticles);
   },
@@ -99,7 +98,7 @@ export default {
             }
             h2 {
                 font-size: 1.2rem;
-                margin-top : 0.5rem;
+                margin : 1rem 0.7rem;
             }
             .buttons {
                 position: absolute;
@@ -117,13 +116,13 @@ export default {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    height : 5rem;
-                    width : 5rem;
+                    height : 4rem;
+                    width : 4rem;
                     border-radius : 50%;
                     background: white;
                     text-decoration: none;
                     cursor: pointer;
-                    font-size : 2.5rem;
+                    font-size : 2rem;
                     .fa-xmark {
                         color : #FF6961;
                     }

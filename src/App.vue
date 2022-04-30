@@ -3,7 +3,7 @@
     <div id="nav">
       <a @click="removeThemes"><font-awesome-icon icon="fa-solid fa-object-ungroup" /></a>
       <h1>Swipe ton actu !</h1>
-      <router-link to="/about"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link>
+      <router-link to="/actu"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link>
     </div>
     <router-view/>
   </div>
