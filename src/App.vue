@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <a @click="removeThemes"><font-awesome-icon icon="fa-solid fa-object-ungroup" /></a>
+      <a @click="removeThemes"><font-awesome-icon icon="fa-solid fa-gear" /></a>
       <h1>Swipe ton actu !</h1>
-      <router-link to="/actu"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link>
+      <!-- <router-link to="/actu"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link> -->
     </div>
     <router-view/>
   </div>
@@ -13,6 +13,7 @@
 export default {
   methods: {
       removeThemes() {
+          window.localStorage.setItem('memoryThemes', window.localStorage.getItem('selectedThemes'))
           window.localStorage.removeItem('selectedThemes');
           this.$router.push('/');
       },
@@ -48,22 +49,27 @@ html {
 }
 
 #nav {
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Gochi Hand', cursive;
   padding: 1rem 2rem 4.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   width : 100vw;
-  max-width: 1000px;
+  max-width: 700px;
   margin-inline : auto;
+  position: relative;
+  text-align: center;
   a {
+    position: absolute;
+    left : 1.5rem;
+    top : 1.5rem;
     cursor: pointer;
-    font-weight: bold;
+    font-size : 1.2rem;
     color: #2c3e50;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     &.router-link-exact-active {
+      color: #42b983;
+    }
+    &:hover {
       color: #42b983;
     }
   }

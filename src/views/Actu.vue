@@ -19,6 +19,13 @@ export default {
       user: "userInfos",
     }),
   },
+  mounted() {
+    let seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'))
+    console.log(!seenArticles)
+    if (!seenArticles) {
+      window.localStorage.setItem('seenArticles', JSON.stringify([]))
+    }
+  },
   components: {
     articlesDisplayer,
     loadingSpinner,

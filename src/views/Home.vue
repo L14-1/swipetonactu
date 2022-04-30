@@ -12,8 +12,8 @@ export default {
   name: 'Home',
   mounted: function () {
     let selectedThemes = JSON.parse(window.localStorage.getItem('selectedThemes'))
-    if (selectedThemes.length != 0) {
-      this.$router.push("/about");
+    if (selectedThemes) {
+      this.$router.push("/actu");
       return;
     }
   },

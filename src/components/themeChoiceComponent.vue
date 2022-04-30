@@ -41,6 +41,12 @@ export default {
       selectedThemes : [],
     };
   },
+  mounted() {
+    let arrayThemes = JSON.parse(window.localStorage.getItem('memoryThemes'));
+    if (arrayThemes) {
+      this.selectedThemes = arrayThemes;
+    }
+  },
   methods: {
     clickedTheme(event) {
       let selectedArray = this.selectedThemes;
@@ -57,10 +63,10 @@ export default {
     themeValidator() {
       let selectedArray = this.selectedThemes;
       if (selectedArray.length == 0) {
-        window.localStorage.setItem('selectedThemes', JSON.stringify(['sport']));
-        this.$router.push('/actu');
+        alert('choisissez au moins un thème 😉')
       } else {
         window.localStorage.setItem('selectedThemes', JSON.stringify(selectedArray));
+        window.localStorage.removeItem('memoryThemes');
         this.$router.push('/actu');
       }
     }

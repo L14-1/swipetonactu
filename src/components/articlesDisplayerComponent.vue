@@ -1,6 +1,6 @@
 <template>
   <div class="articles-displayer">
-    <div v-for="article in returnedArticles" :key="article.id" class="card-container">
+    <div v-for="article in returnedArticles" :key="article.id" class="card-container" :id="article.uniqueId" v-show="!(seenArticles.includes(article.uniqueId))">
       <div class="inside-card">
         <img :src="article.img" alt="image descriptive de l'article">
         <h2>{{ article.title }}</h2>
@@ -24,33 +24,52 @@ import { mapState } from "vuex";
 
 export default {
   name: 'articlesDisplayer',
+  data : function() {
+      return {
+          seenArticles: [],
+      }
+  },
   computed: {
     ...mapState({
       returnedArticles: "returnedArticles",
     }),
   },
   mounted() {
-    let selectedArticles = JSON.parse(window.localStorage.getItem('selectedThemes'))
+    let selectedArticles = JSON.parse(window.localStorage.getItem('selectedThemes'));
     this.$store.dispatch("getSpecifiedArticles", selectedArticles);
+    this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
   },
   methods: {
       nextArticle(event) {
+          var articleUniqueId = '';
           if (event.path[3].className == 'card-container') {
-              event.path[3].setAttribute("class", "card-container slide-effect")
+              event.path[3].setAttribute("class", "card-container slide-effect");
+              articleUniqueId = event.path[3].getAttribute('id')
           } else if (event.path[3].className == 'buttons') {
               event.path[5].setAttribute("class", "card-container slide-effect")
+              articleUniqueId = event.path[5].getAttribute('id')
           } else if (event.path[3].className == 'inside-card') {
               event.path[4].setAttribute("class", "card-container slide-effect")
+              articleUniqueId = event.path[4].getAttribute('id')
           }
+          this.seenArticles.push(articleUniqueId);
+          window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+
       },
       seenArticle(event) {
+          var articleUniqueId = '';
           if (event.path[3].className == 'card-container') {
               event.path[3].setAttribute("class", "card-container slide-effect-seen")
+              articleUniqueId = event.path[3].getAttribute('id')
           } else if (event.path[3].className == 'buttons') {
               event.path[5].setAttribute("class", "card-container slide-effect-seen")
+              articleUniqueId = event.path[5].getAttribute('id')
           } else if (event.path[3].className == 'inside-card') {
               event.path[4].setAttribute("class", "card-container slide-effect-seen")
+              articleUniqueId = event.path[4].getAttribute('id')
           }
+          this.seenArticles.push(articleUniqueId);
+          window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
       },
   }
 }
