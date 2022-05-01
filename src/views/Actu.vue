@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="actu">
     <articlesDisplayer />
     <loadingSpinner v-if="status == 'loading'"/>
   </div>

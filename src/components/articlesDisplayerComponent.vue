@@ -1,14 +1,15 @@
 <template>
   <div class="articles-displayer">
-    <div v-for="article in returnedArticles" :key="article.id" class="card-container" :id="article.uniqueId" v-show="!(seenArticles.includes(article.uniqueId))">
+    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles.includes(article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="article.uniqueId" >
       <div class="inside-card">
-        <img :src="article.img" alt="image descriptive de l'article">
+        <img :src="article.img" alt="image descriptive de l'article" class="article-img">
         <h2>{{ article.title }}</h2>
         <div class="buttons">
             <button @click="nextArticle" class="buttons--choice buttons--dislike"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
             <a @click="seenArticle" :href="article.url" target="_blank" class="buttons--choice buttons--like"><font-awesome-icon icon="fa-solid fa-heart" /></a>
         </div>
         <p class="themeInfo">{{ article.theme }}</p>
+        <img src="../assets/20minutes-logo.png" alt="logo de 20minutes" class="source-logo">
       </div>
     </div>
     <div class="end-message">
@@ -27,7 +28,7 @@ export default {
   data : function() {
       return {
           seenArticles: [],
-      }
+        }
   },
   computed: {
     ...mapState({
@@ -52,8 +53,10 @@ export default {
               event.path[4].setAttribute("class", "card-container slide-effect")
               articleUniqueId = event.path[4].getAttribute('id')
           }
-          this.seenArticles.push(articleUniqueId);
-          window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+        setTimeout(() => {
+            this.seenArticles.push(articleUniqueId);
+            window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+        }, "1000")
 
       },
       seenArticle(event) {
@@ -68,8 +71,10 @@ export default {
               event.path[4].setAttribute("class", "card-container slide-effect-seen")
               articleUniqueId = event.path[4].getAttribute('id')
           }
-          this.seenArticles.push(articleUniqueId);
-          window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+        setTimeout(() => {
+            this.seenArticles.push(articleUniqueId);
+            window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+        }, "1000")
       },
   }
 }
@@ -81,13 +86,11 @@ export default {
 @keyframes slideAwayCard {
     to {
         transform: translateX(-150vw) translateY(10rem) rotateZ(-45deg);
-        display: none;
     }
 }
 @keyframes slideAwayCardRight {
     to {
         transform: translateX(150vw) translateY(10rem) rotateZ(45deg);
-        display: none;
     }
 }
 
@@ -109,7 +112,7 @@ export default {
             max-height : 50rem;
             // border : solid 2px white;
             border-radius : 2rem;
-            img {
+            .article-img {
                 margin-inline : auto;
                 width : 100%;
                 height : 50%;
@@ -152,9 +155,19 @@ export default {
             }
             .themeInfo {
                 position : absolute;
-                bottom : 0.3rem;
-                right : 1.5rem;
+                bottom : 50%;
+                left : 0;
                 font-size : 0.8rem;
+                background: linear-gradient(0.85turn, #e66465 25%, #9198e5);
+                color : white;
+                padding : 0.3rem 0.8rem 0.3rem 0.3rem;
+                border-top-right-radius: 15px;
+            }
+            .source-logo {
+                position: absolute;
+                width : 2.6rem;
+                bottom : 0.2rem;
+                left : calc(50% - 1.3rem);
             }
         }
     }
@@ -164,6 +177,9 @@ export default {
     .slide-effect-seen {
         animation : slideAwayCardRight 1s ease-in-out forwards;
     }
+    .un-displayed {
+        display : none;
+    }
     .end-message {
         z-index : -1;
         display : flex;
@@ -172,6 +188,7 @@ export default {
         align-items : center;
         height : 50vh;
         width: 60vw;
+
     }
 }
 
