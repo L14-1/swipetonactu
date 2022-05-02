@@ -15,8 +15,7 @@ export default {
   name: 'Actu',
   computed: {
     ...mapState({
-      status: "status",
-      user: "userInfos",
+      status: "status"
     }),
   },
   mounted() {

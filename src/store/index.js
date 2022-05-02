@@ -23,10 +23,12 @@ export default new Vuex.Store({
   actions: {
     getSpecifiedArticles: ({commit}, specifiedArticles) => {
       commit('setStatus', 'loading');
-      let articles = { selectedThemes : specifiedArticles}
+      console.log(specifiedArticles)
+      let articles = specifiedArticles;
       axios({
         method: 'post',
         url: 'https://swipetonactuapi.herokuapp.com/news',
+        // url: 'http://localhost:8000/news',
         data: articles,
         headers: {
           'content-type': 'application/json'

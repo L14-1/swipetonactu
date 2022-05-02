@@ -15,7 +15,9 @@ export default {
       removeThemes() {
           window.localStorage.setItem('memoryThemes', window.localStorage.getItem('selectedThemes'))
           window.localStorage.removeItem('selectedThemes');
-          this.$router.push('/');
+          setTimeout(() => {
+            this.$router.push('/');
+          }, "500")
       },
   }
 }
