@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <a @click="removeThemes"><font-awesome-icon icon="fa-solid fa-gear" /></a>
-      <h1>Swipe ton actu !</h1>
+      <h1>swipe ton actu !</h1>
       <!-- <router-link to="/actu"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link> -->
     </div>
     <router-view/>
@@ -51,15 +51,27 @@ html {
 }
 
 #nav {
-  font-family: 'Gochi Hand', cursive;
-  padding: 1rem 2rem 4.5rem 2rem;
-  // display: flex;
-  // justify-content: space-between;
+  font-family: 'Oleo Script Swash Caps', cursive;
+  position : relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height : 10vh;
+  max-height : 4.5rem;
   width : 100vw;
   max-width: 700px;
   margin-inline : auto;
+  margin-bottom : 1rem;
   position: relative;
   text-align: center;
+  // &::after{
+  //   content: '';
+  //   width : 100%;
+  //   height : 1px;
+  //   background: #2c3e50;
+  //   position : absolute;
+  //   bottom : 0;
+  // }
   a {
     position: absolute;
     left : 1.5rem;

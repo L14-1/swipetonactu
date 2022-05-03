@@ -23,7 +23,6 @@ export default new Vuex.Store({
   actions: {
     getSpecifiedArticles: ({commit}, specifiedArticles) => {
       commit('setStatus', 'loading');
-      console.log(specifiedArticles)
       let articles = specifiedArticles;
       axios({
         method: 'post',

@@ -1,12 +1,12 @@
 <template>
   <div class="articles-displayer">
-    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles.includes(article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
+    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes(article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
       <div class="inside-card">
         <img :src="article.img" alt="image descriptive de l'article" class="article-img">
         <h2>{{ article.title }}</h2>
         <p class="themeInfo">{{ article.theme }}</p>
         <div class="buttons">
-            <button v-on:click.prevent="nextArticle(article.uniqueId)" class="buttons--choice buttons--dislike"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
+            <button v-on:click="nextArticle(article.uniqueId)" class="buttons--choice buttons--dislike"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
             <a v-on:click="seenArticle(article.uniqueId)" :href="article.url" target="_blank" class="buttons--choice buttons--like"><font-awesome-icon icon="fa-solid fa-heart" /></a>
         </div>
         <!-- <img :src="'../assets/' + article.source + '-logo.png'" :alt="'logo de ' + article.source" class="source-logo"> -->
@@ -98,11 +98,10 @@ export default {
             display : flex;
             flex-direction: column;
             background: white;
-            width : 75vw;
-            max-width : 21rem;
-            height : 70vh;
+            width : 90vw;
+            max-width : 22rem;
+            height : 75vh;
             max-height : 50rem;
-            // border : solid 2px white;
             border-radius : 2rem;
             .article-img {
                 margin-inline : auto;
@@ -149,7 +148,7 @@ export default {
                 position : absolute;
                 bottom : 50%;
                 left : 0;
-                font-size : 0.8rem;
+                font-size : 1rem;
                 background: linear-gradient(0.85turn, #e66465 25%, #9198e5);
                 color : white;
                 padding : 0.3rem 0.8rem 0.3rem 0.3rem;
