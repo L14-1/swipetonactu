@@ -1,27 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <a @click="removeThemes"><font-awesome-icon icon="fa-solid fa-gear" /></a>
-      <h1>swipe ton actu !</h1>
-      <!-- <router-link to="/actu"><font-awesome-icon icon="fa-solid fa-newspaper" /></router-link> -->
-    </div>
     <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-      removeThemes() {
-          window.localStorage.setItem('memoryThemes', window.localStorage.getItem('selectedThemes'))
-          window.localStorage.removeItem('selectedThemes');
-          setTimeout(() => {
-            this.$router.push('/');
-          }, "500")
-      },
-  }
-}
-</script>
+
 
 
 <style lang="scss">
@@ -37,55 +20,40 @@ export default {
 }
 
 html {
-  background: #EDE4E3;
+  background: #f1f3f6;
   width: 100vw;
-  overflow-x: hidden;
+  height : 100vh;
+  overflow:hidden;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  font-family: 'Oleo Script Swash Caps', cursive;
-  position : relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height : 10vh;
-  max-height : 4.5rem;
-  width : 100vw;
-  max-width: 700px;
-  margin-inline : auto;
-  margin-bottom : 1rem;
-  position: relative;
-  text-align: center;
-  // &::after{
-  //   content: '';
-  //   width : 100%;
-  //   height : 1px;
-  //   background: #2c3e50;
-  //   position : absolute;
-  //   bottom : 0;
-  // }
-  a {
-    position: absolute;
-    left : 1.5rem;
-    top : 1.5rem;
-    cursor: pointer;
-    font-size : 1.2rem;
-    color: #2c3e50;
-    text-decoration: none;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-    &:hover {
-      color: #42b983;
-    }
-  }
+.button {
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  padding : 0.7rem;
+  background: transparent;
+  box-shadow: 
+    inset 0 0 15px rgba(55, 84, 170,0),
+    inset 0 0 20px rgba(255, 255, 255,0),
+    7px 7px 15px rgba(55, 84, 170,.15),
+    -7px -7px 20px rgba(255, 255, 255,1),
+    inset 0px 0px 4px rgba(255, 255, 255,.2);
 }
+
+.activeBtn {
+  box-shadow: 
+      inset 7px 7px 15px rgba(55, 84, 170,.15),
+      inset -7px -7px 20px rgba(255, 255, 255,1),
+      0px 0px 4px rgba(255, 255, 255,.2);
+}
+
+
 </style>

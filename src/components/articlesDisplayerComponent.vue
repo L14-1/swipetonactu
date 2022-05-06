@@ -1,23 +1,22 @@
 <template>
   <div class="articles-displayer">
     <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes(article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
-      <div class="inside-card">
+      <div v-hammer:pan="onPan" class="inside-card">
         <img :src="article.img" alt="image descriptive de l'article" class="article-img">
         <h2>{{ article.title }}</h2>
         <p class="themeInfo">{{ article.theme }}</p>
-        <div class="buttons">
-            <button v-on:click="nextArticle(article.uniqueId)" class="buttons--choice buttons--dislike"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
-            <a v-on:click="seenArticle(article.uniqueId)" :href="article.url" target="_blank" class="buttons--choice buttons--like"><font-awesome-icon icon="fa-solid fa-heart" /></a>
-        </div>
         <!-- <img :src="'../assets/' + article.source + '-logo.png'" :alt="'logo de ' + article.source" class="source-logo"> -->
         <img src="../assets/20minutes-logo.png" alt="logo 20 minutes" class="source-logo" v-if="article.source == '20minutes'">
         <img src="../assets/leFigaro-logo.png" alt="logo le Figaro" class="source-logo" v-if="article.source == 'leFigaro'">
         <img src="../assets/lesEchos-logo.png" alt="logo les Echos" class="source-logo" v-if="article.source == 'lesEchos'">
+        <!-- <iframe src="https://www.20minutes.fr/sport/football/3282143-20220503-mondial-2022-gianni-infantino-franchit-mur-indecence-sujet-ouvriers-morts-chantiers" width="100%" height="100%">
+            <p>error</p>
+        </iframe> -->
       </div>
     </div>
     <div class="end-message">
-        <h3>C'est fini pour aujourd'hui !</h3>
-        <p>Revenez demain pour de nouvelles actus !</p>
+        <h3>C'est fini ...😞</h3>
+        <p>Revenez plus tard pour de nouvelles actus !</p>
     </div>
   </div>
 </template>
@@ -68,6 +67,48 @@ export default {
             window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
         }, "1000")
       },
+      onPan(e) {
+        const maxAngle = 45;
+        const smooth = 0.3;
+        const treshold = 20;
+        let posX = e.deltaX;
+        let posY = Math.max(0, Math.abs(posX * smooth) - treshold);
+        let card = e.target.className == 'inside-card' ? e.target : e.target.offsetParent;
+        if (e.target.className == 'inside-card') {
+            card = card.offsetParent
+        }
+        card.classList.remove('resetPos-card');
+
+        let angle = posX < 0 ? (Math.max(posX * smooth/ 100, -1) * maxAngle) : Math.min(posX * smooth / 100, 1) * maxAngle;
+
+        card.style.transform = `translateX(${posX}px) translateY(${posY}px) rotate(${angle}deg)`;
+
+        card.classList.remove('liking-card');
+        card.classList.remove('disliking-card')
+        if (posX > 150) {
+            card.classList.add('liking-card')
+        } else if (posX < -150) {
+            card.classList.add('disliking-card')
+        }
+
+        if (e.isFinal) {
+            card.style.transform = ``;
+            if (posX > 150) {
+                card.classList.add('liked-card')
+                setTimeout(() => {
+                    card.classList.add('un-displayed')
+                }, "400")
+            } else if (posX < -150) {
+                card.classList.add('disliked-card')
+                setTimeout(() => {
+                    card.classList.add('un-displayed')
+                }, "400")
+            } else {
+                card.classList.add('resetPos-card')
+            }
+        }
+
+      }
   }
 }
 </script>
@@ -76,13 +117,31 @@ export default {
 <style scoped lang="scss">
 
 @keyframes slideAwayCard {
-    to {
+    0% {
+        transform: translateX(150vw) translateY(10rem) rotateZ(45deg);
+        }
+    99% {
         transform: translateX(-150vw) translateY(10rem) rotateZ(-45deg);
+        visibility: hidden;
+        
+        }
+    100% {
+        transform: translateX(0) translateY(0) rotateZ(0);
+        display: none;
     }
 }
 @keyframes slideAwayCardRight {
-    to {
+    0% {
+        visibility: hidden;
+        }
+    99% {
         transform: translateX(150vw) translateY(10rem) rotateZ(45deg);
+        visibility: hidden;
+        
+        }
+    100% {
+        transform: translateX(0) translateY(0) rotateZ(0);
+        display: none;
     }
 }
 
@@ -92,67 +151,37 @@ export default {
     align-items: center;
     .card-container {
       position : absolute;
+      top : 15vh;
         .inside-card {
-            position: relative;
             overflow: hidden;
             display : flex;
             flex-direction: column;
             background: white;
-            width : 90vw;
+            width : 80vw;
             max-width : 22rem;
-            height : 75vh;
+            height : 50vh;
             max-height : 50rem;
             border-radius : 2rem;
             .article-img {
                 margin-inline : auto;
                 width : 100%;
-                height : 50%;
+                height : 60%;
                 object-fit: cover;
             }
             h2 {
                 font-size: 1.2rem;
                 margin : 1rem 0.7rem;
             }
-            .buttons {
-                position: absolute;
-                bottom : 3rem;
-                width : 100%;
-                display: flex;
-                justify-content: space-evenly;
-                &--like {
-                    border : 2px solid #77DD77;
-                }
-                &--dislike {
-                    border : 2px solid #FF6961;
-                }
-                &--choice {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height : 4rem;
-                    width : 4rem;
-                    border-radius : 50%;
-                    background: white;
-                    text-decoration: none;
-                    cursor: pointer;
-                    font-size : 2rem;
-                    .fa-xmark {
-                        color : #FF6961;
-                    }
-                    .fa-heart {
-                        color : #77DD77;
-                    }
-                }
-            }
             .themeInfo {
                 position : absolute;
-                bottom : 50%;
+                top : 0;
                 left : 0;
-                font-size : 1rem;
-                background: linear-gradient(0.85turn, #e66465 25%, #9198e5);
+                font-weight : 200;
+                background: linear-gradient(-15deg, #e66465 25%, #9198e5);
                 color : white;
-                padding : 0.3rem 0.8rem 0.3rem 0.3rem;
-                border-top-right-radius: 15px;
+                padding : 0.3rem 1.2rem 0.4rem 1rem;
+                border-top-left-radius: 2rem;
+                border-bottom-right-radius: 2rem;
             }
             .source-logo {
                 position: absolute;
@@ -166,10 +195,37 @@ export default {
         animation : slideAwayCard 1s ease-in-out forwards;
     }
     .slide-effect-seen {
-        animation : slideAwayCardRight 1s ease-in-out forwards;
+        animation : slideAwayCardRight 1s linear forwards;
     }
     .un-displayed {
+        visibility: hidden;
         display : none;
+    }
+    .liked-card {
+        transition: 0.4s;
+        transform: translateX(600px) translateY(100px) rotate(60deg);
+    }
+    .disliked-card {
+        transition: 0.4s;
+        transform: translateX(-600px) translateY(100px) rotate(-60deg);
+    }
+    .resetPos-card {
+        transition: 0.5s;
+    }
+    .liking-card, .disliking-card {
+        &::after {
+            content : '';
+            position : absolute;
+            width : 100%;
+            height: 100%;
+            top : 0;
+            left : 0;
+            border-radius : 2rem;
+            background: #77dd7783;
+        }
+    }
+    .disliking-card::after {
+        background: #ff696183;
     }
     .end-message {
         z-index : -1;

@@ -5,6 +5,9 @@ import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { VueHammer } from 'vue2-hammer'
+
+Vue.use(VueHammer)
 
 library.add(fas)
 
