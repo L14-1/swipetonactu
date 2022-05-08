@@ -1,6 +1,6 @@
 <template>
   <div class="articles-displayer">
-    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes(article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
+    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes('id' + article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
       <div v-hammer:pan="onPan" class="inside-card">
         <img :src="article.img" alt="image descriptive de l'article" class="article-img">
         <h2>{{ article.title }}</h2>
@@ -9,9 +9,7 @@
         <img src="../assets/20minutes-logo.png" alt="logo 20 minutes" class="source-logo" v-if="article.source == '20minutes'">
         <img src="../assets/leFigaro-logo.png" alt="logo le Figaro" class="source-logo" v-if="article.source == 'leFigaro'">
         <img src="../assets/lesEchos-logo.png" alt="logo les Echos" class="source-logo" v-if="article.source == 'lesEchos'">
-        <!-- <iframe src="https://www.20minutes.fr/sport/football/3282143-20220503-mondial-2022-gianni-infantino-franchit-mur-indecence-sujet-ouvriers-morts-chantiers" width="100%" height="100%">
-            <p>error</p>
-        </iframe> -->
+        <p class="un-displayed">{{article.url}}</p>
       </div>
     </div>
     <div class="end-message">
@@ -48,25 +46,6 @@ export default {
     this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
   },
   methods: {
-      nextArticle: function(id) {
-
-        this.$el.querySelector(`#id${id}`).setAttribute("class", "card-container slide-effect");
-        
-        setTimeout(() => {
-            this.seenArticles.push(id);
-            window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
-        }, "1000")
-
-      },
-      seenArticle: function(id) {
-
-          this.$el.querySelector(`#id${id}`).setAttribute("class", "card-container slide-effect-seen")
-          
-        setTimeout(() => {
-            this.seenArticles.push(id);
-            window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
-        }, "1000")
-      },
       onPan(e) {
         const maxAngle = 45;
         const smooth = 0.3;
@@ -91,22 +70,32 @@ export default {
             card.classList.add('disliking-card')
         }
 
+        let url = card.children[0].children[4].innerText;
+
         if (e.isFinal) {
             card.style.transform = ``;
             if (posX > 150) {
                 card.classList.add('liked-card')
                 setTimeout(() => {
                     card.classList.add('un-displayed')
+                    this.seenArticles.push(card.id);
+                    window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
+                    this.$store.commit('actionWindow');
+                    this.$store.commit('actionWindowUrl', url);
                 }, "400")
             } else if (posX < -150) {
                 card.classList.add('disliked-card')
                 setTimeout(() => {
                     card.classList.add('un-displayed')
+                    this.seenArticles.push(card.id);
+                    window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
                 }, "400")
             } else {
                 card.classList.add('resetPos-card')
             }
         }
+
+        // console.log(card.children[0].children[4].innerText)
 
       }
   }

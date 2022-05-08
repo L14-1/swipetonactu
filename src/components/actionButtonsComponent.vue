@@ -1,13 +1,30 @@
 <template>
     <div class="action-buttons">
-        <button class="button button-style dislike-button"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
-        <a class="button button-style like-button"><font-awesome-icon icon="fa-solid fa-heart" /></a>
+        <button @click="like" class="button button-style dislike-button"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
+        <button class="button button-style like-button"><font-awesome-icon icon="fa-solid fa-heart" /></button>
     </div>
 </template>
 
 <script>
 export default {
   name: 'actionButtons',
+  data : function() {
+      return {
+          index: 0,
+          actuArr: [],
+        }
+  },
+  mounted() {
+      console.log(this.$parent.$el.children[1].children)
+      this.actuArr = this.$parent.$el.children[1].children;
+      this.index = this.$parent.$el.children[1].children.length - 1;
+  },
+  methods: {
+      like: function () {
+          console.log(this.$parent.$el.children[1].children[this.index])
+          this.index--;
+      },
+  }
   
 }
 </script>

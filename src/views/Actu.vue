@@ -3,6 +3,7 @@
     <headerComponent />
     <articlesDisplayer />
     <actionButtons />
+    <articleWindow />
     <loadingSpinner v-if="status == 'loading'"/>
   </div>
 </template>
@@ -14,12 +15,13 @@ import articlesDisplayer from '@/components/articlesDisplayerComponent.vue'
 import loadingSpinner from '@/components/loadingSpinnerComponent.vue'
 import headerComponent from '@/components/headerComponent.vue'
 import actionButtons from '@/components/actionButtonsComponent.vue'
+import articleWindow from '@/components/articleWindowComponent.vue'
 
 export default {
   name: 'Actu',
   computed: {
     ...mapState({
-      status: "status"
+      status: "status",
     }),
   },
   mounted() {
@@ -32,7 +34,8 @@ export default {
     articlesDisplayer,
     loadingSpinner,
     headerComponent,
-    actionButtons
+    actionButtons,
+    articleWindow
   },
 }
 </script>

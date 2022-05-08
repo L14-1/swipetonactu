@@ -11,6 +11,8 @@ export default new Vuex.Store({
     selectThemesWindow : '',
     returnedArticles : [],
     status : '',
+    articleUrl: 'https://lefigaro.fr/',
+    articleWindow: false,
   },
   mutations: {
     returnedArticles: function (state, returnedArticles) {
@@ -19,6 +21,12 @@ export default new Vuex.Store({
     setStatus: function (state, status) {
       state.status = status;
     },
+    actionWindow: function (state) {
+      state.articleWindow = !state.articleWindow;
+    },
+    actionWindowUrl: function (state, articleUrl) {
+      state.articleUrl = articleUrl;
+    }
   },
   actions: {
     getSpecifiedArticles: ({commit}, specifiedArticles) => {
@@ -40,7 +48,7 @@ export default new Vuex.Store({
         .catch(function (err) {
           return err;
         })
-    }
+    },
   },
   modules: {
   }
