@@ -4,7 +4,7 @@
         <h1><span class="swipe">Swipe</span> <span class="news">news</span></h1>
         <div class="list-articles" v-if="savedArticles.length != 0">
             <div class="one-article" v-for="article in savedArticles" :key="article.title">
-                <a :href="article.url">{{ article.title }}</a>
+                <a :href="article.url" target="_blank">{{ article.title }}</a>
                 <button @click="deleteArticle(savedArticles.indexOf(article))"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
                 <p class="un-displayed">{{ savedArticles.indexOf(article) }}</p>
             </div>

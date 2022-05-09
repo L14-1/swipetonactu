@@ -1,6 +1,6 @@
 <template>
   <div class="articles-displayer">
-    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes('id' + article.uniqueId) ? 'un-displayed' : '' , 'card-container']" :id="'id' + article.uniqueId" >
+    <div v-for="article in returnedArticles" :key="article.id" :class="[seenArticles && seenArticles.includes('id' + article.uniqueId) ? 'un-displayed' : 'unseen-article' , 'card-container']" :id="'id' + article.uniqueId" >
       <div v-hammer:pan="onPan" class="inside-card">
         <img :src="article.img" alt="image descriptive de l'article" class="article-img">
         <h2>{{ article.title }}</h2>
@@ -44,13 +44,22 @@ export default {
         selectedThemes : selectedArticles,
       }
     this.$store.dispatch("getSpecifiedArticles", getSpecifiedArticles);
-    this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
+    if (window.localStorage.getItem('seenArticles')) {
+        this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
+    }
     if (window.localStorage.getItem('savedArticles')) {
         this.savedArticles = JSON.parse(window.localStorage.getItem('savedArticles'));
     }
   },
   methods: {
       onPan(e) {
+        if (window.localStorage.getItem('seenArticles')) {
+            this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
+        }
+        if (window.localStorage.getItem('savedArticles')) {
+            this.savedArticles = JSON.parse(window.localStorage.getItem('savedArticles'));
+        }
+        
         const maxAngle = 45;
         const smooth = 0.3;
         const treshold = 20;
