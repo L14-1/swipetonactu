@@ -1,6 +1,6 @@
 <template>
     <div class="settings">
-        <router-link to="/actu" class="button back-button"><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link>
+        <router-link to="/" class="button back-button"><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link>
         <h1><span class="swipe">Swipe</span> <span class="news">news</span></h1>
         <div class="main-buttons">
             <button class="button big-button"><font-awesome-icon icon="fa-solid fa-circle-info" />À propos</button>
@@ -17,7 +17,9 @@ export default {
         deletehistory : function () {
             window.localStorage.removeItem('selectedSources')
             window.localStorage.removeItem('selectedThemes')
+            window.localStorage.removeItem('memoryThemes')
             window.localStorage.removeItem('seenArticles')
+            window.localStorage.removeItem('savedArticles')
             setTimeout(() => {
             this.$router.push('/');
             }, "200")

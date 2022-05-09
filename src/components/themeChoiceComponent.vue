@@ -1,5 +1,6 @@
 <template>
   <div class="theme-choice">
+    <router-link to="/settings" class="button setting-button"><font-awesome-icon icon="fa-solid fa-gear" /></router-link>
     <div class="choice-container">
       <h3>Choisissez vos sources 😄</h3>
       <ul>
@@ -52,8 +53,8 @@
           Politique
         </li>
       </ul>
-      <button class="button next-button" @click="themeValidator"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
     </div>
+      <button class="button next-button" @click="themeValidator"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
   </div>
 </template>
 
@@ -131,11 +132,25 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  .setting-button {
+    position : absolute;
+    top : 2rem;
+    left : 2rem;
+    width : 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items : center;
+    justify-content: center;
+    color : #2c3e50;
+  }
   .choice-container {
+    margin-top : 4rem;
     position : relative;
     height : 80vh;
     width : 80vw;
     max-width : 1000px;
+    overflow-x: auto;
     h3 {
       font-size : 1rem;
       width : 100%;
@@ -151,11 +166,12 @@ export default {
         margin : 0.5rem;
       }
     }
+  }
     .next-button {
       cursor: pointer;
-      position : absolute;
-      bottom : 0;
-      right : 0;
+      position : fixed;
+      bottom : 4rem;
+      right : 4rem;
       background : transparent;
 
       padding : 0.4rem;
@@ -165,7 +181,6 @@ export default {
       width : 3.4rem;
       height  : 3.4rem;
     }
-  }
 }
 
 

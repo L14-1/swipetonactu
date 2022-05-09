@@ -28,6 +28,7 @@ export default {
   data : function() {
       return {
           seenArticles: [],
+          savedArticles: [],
         }
   },
   computed: {
@@ -44,6 +45,9 @@ export default {
       }
     this.$store.dispatch("getSpecifiedArticles", getSpecifiedArticles);
     this.seenArticles = JSON.parse(window.localStorage.getItem('seenArticles'));
+    if (window.localStorage.getItem('savedArticles')) {
+        this.savedArticles = JSON.parse(window.localStorage.getItem('savedArticles'));
+    }
   },
   methods: {
       onPan(e) {
@@ -71,6 +75,7 @@ export default {
         }
 
         let url = card.children[0].children[4].innerText;
+        let title = card.children[0].children[1].innerText
 
         if (e.isFinal) {
             card.style.transform = ``;
@@ -80,8 +85,11 @@ export default {
                     card.classList.add('un-displayed')
                     this.seenArticles.push(card.id);
                     window.localStorage.setItem('seenArticles', JSON.stringify(this.seenArticles))
-                    this.$store.commit('actionWindow');
-                    this.$store.commit('actionWindowUrl', url);
+                    this.savedArticles.push({
+                        title,
+                        url,
+                    });
+                    window.localStorage.setItem('savedArticles', JSON.stringify(this.savedArticles))
                 }, "400")
             } else if (posX < -150) {
                 card.classList.add('disliked-card')

@@ -2,7 +2,7 @@
   <div class="nav">
       <a @click="removeThemes" class="button rounded"><font-awesome-icon icon="fa-solid fa-list-check" /></a>
       <h1><span class="swipe">Swipe</span> <span class="news">news</span></h1>
-      <router-link to="/settings" class="button rounded"><font-awesome-icon icon="fa-solid fa-gear" /></router-link>
+      <router-link to="/articles" class="button rounded"><font-awesome-icon icon="fa-solid fa-inbox" /></router-link>
     </div>
 </template>
 
