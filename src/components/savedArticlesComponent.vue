@@ -3,7 +3,7 @@
         <router-link to="/actu" class="button back-button"><font-awesome-icon icon="fa-solid fa-arrow-left" /></router-link>
         <h1><span class="swipe">Swipe</span> <span class="news">news</span></h1>
         <div class="list-articles" v-if="savedArticles.length != 0">
-            <div class="one-article" v-for="article in savedArticles" :key="article.title">
+            <div class="one-article" v-for="article in savedArticles.slice().reverse()" :key="article.title">
                 <a :href="article.url" target="_blank">{{ article.title }}</a>
                 <button @click="deleteArticle(savedArticles.indexOf(article))"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
                 <p class="un-displayed">{{ savedArticles.indexOf(article) }}</p>
@@ -79,6 +79,7 @@ export default {
             height : 85vh;
             border-right : 10px solid #f1f3f6;
             border-left : 10px solid #f1f3f6;
+            overflow-y: scroll;
             .one-article {
                 height : 5rem;
                 display: flex;
@@ -93,6 +94,9 @@ export default {
                     text-overflow : ellipsis;
                     width : 70vw;
                     text-decoration: none;
+                    &:visited {
+                        color :#b4b7b9;
+                    }
                 }
                 button {
                     background: transparent;

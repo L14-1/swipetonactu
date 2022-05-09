@@ -12,6 +12,7 @@
         <p class="un-displayed">{{article.url}}</p>
       </div>
     </div>
+    <div v-if="savedArticles && savedArticles.length != 0" class="notification"></div>
     <div class="end-message">
         <h3>C'est fini ...😞</h3>
         <p>Revenez plus tard pour de nouvelles actus !</p>
@@ -59,7 +60,7 @@ export default {
         if (window.localStorage.getItem('savedArticles')) {
             this.savedArticles = JSON.parse(window.localStorage.getItem('savedArticles'));
         }
-        
+
         const maxAngle = 45;
         const smooth = 0.3;
         const treshold = 20;
@@ -232,6 +233,16 @@ export default {
     }
     .disliking-card::after {
         background: #ff696183;
+    }
+    .notification {
+        position : absolute;
+        top : 2rem;
+        right : 2.1rem;
+        z-index : 20;
+        width : 0.8rem;
+        height : 0.8rem;
+        border-radius: 50%;
+        background: #e66465;
     }
     .end-message {
         z-index : -1;

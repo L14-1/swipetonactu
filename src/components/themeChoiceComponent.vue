@@ -1,6 +1,7 @@
 <template>
   <div class="theme-choice">
     <router-link to="/settings" class="button setting-button"><font-awesome-icon icon="fa-solid fa-gear" /></router-link>
+    <h1><span class="swipe">Swipe</span> <span class="news">news</span></h1>
     <div class="choice-container">
       <h3>Choisissez vos sources 😄</h3>
       <ul>
@@ -144,13 +145,18 @@ export default {
     justify-content: center;
     color : #2c3e50;
   }
+  h1 {
+    position : absolute;
+    top : 2rem;
+    right : 2rem;
+  }
   .choice-container {
     margin-top : 4rem;
     position : relative;
     height : 80vh;
     width : 80vw;
     max-width : 1000px;
-    overflow-x: auto;
+    overflow-y: auto;
     h3 {
       font-size : 1rem;
       width : 100%;

@@ -15,14 +15,16 @@
 export default {
     methods: {
         deletehistory : function () {
-            window.localStorage.removeItem('selectedSources')
-            window.localStorage.removeItem('selectedThemes')
-            window.localStorage.removeItem('memoryThemes')
-            window.localStorage.removeItem('seenArticles')
-            window.localStorage.removeItem('savedArticles')
-            setTimeout(() => {
-            this.$router.push('/');
-            }, "200")
+            if (confirm("Êtes-vous sûre de vouloir effacer l'historique de l'application ?")) {
+                window.localStorage.removeItem('selectedSources')
+                window.localStorage.removeItem('selectedThemes')
+                window.localStorage.removeItem('memoryThemes')
+                window.localStorage.removeItem('seenArticles')
+                window.localStorage.removeItem('savedArticles')
+                setTimeout(() => {
+                this.$router.push('/');
+                }, "200")
+            }
         }
     }
 }
@@ -58,7 +60,8 @@ export default {
         .big-button {
             position: relative;
             width : 90vw;
-            padding : 1rem 0 1rem 30vw;
+            max-width : 700px;
+            padding : 1rem 0 1rem 5rem;
             color : #2c3e50;
             font-size : 1rem;
             text-align: left;

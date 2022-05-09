@@ -33,8 +33,6 @@ export default {
         let index = card.length - 1;
         let title = card[index].children[0].children[1].innerText;
         let url = card[index].children[0].children[4].innerText
-        // console.log(this.$parent.seenArticles)
-        console.log(card[index])
         card[index].classList.add('liked-card')
         setTimeout(() => {
             card[index].classList.add('un-displayed')
