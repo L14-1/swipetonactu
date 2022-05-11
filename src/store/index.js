@@ -11,6 +11,8 @@ export default new Vuex.Store({
     selectThemesWindow : '',
     returnedArticles : [],
     status : '',
+    likedArticle : [],
+    notification: false,
   },
   mutations: {
     returnedArticles: function (state, returnedArticles) {
@@ -19,6 +21,16 @@ export default new Vuex.Store({
     setStatus: function (state, status) {
       state.status = status;
     },
+    likedArticle: function (state, article) {
+      state.likedArticle = article;
+    },
+    notification: function (state) {
+      state.notification = true;
+      console.log('test')
+      setTimeout(() => {
+        state.notification = false;
+      }, 5000);
+    }
   },
   actions: {
     getSpecifiedArticles: ({commit}, specifiedArticles) => {

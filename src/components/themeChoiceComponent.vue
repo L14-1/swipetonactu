@@ -14,6 +14,12 @@
         <li v-on:click="clickedSource('leFigaro')" :class="[selectedSources.includes('leFigaro') ? 'activeBtn' : '' , 'button']" id="leFigaro">
           Le Figaro
         </li>
+        <li v-on:click="clickedSource('lexpress')" :class="[selectedSources.includes('lexpress') ? 'activeBtn' : '' , 'button']" id="lexpress">
+          L'Express
+        </li>
+        <li v-on:click="clickedSource('lePoint')" :class="[selectedSources.includes('lePoint') ? 'activeBtn' : '' , 'button']" id="lePoint">
+          le Point
+        </li>
       </ul>
       <h3 v-if="selectedSources.length != 0">... et vos thèmes !</h3>
       <ul>
@@ -26,10 +32,10 @@
         <li v-on:click="clickedTheme('entertainment')" :class="[selectedThemes.includes('entertainment') ? 'activeBtn' : '' , 'button']" id="entertainment" v-if="selectedSources.includes('20minutes')">
           Entertainment
         </li>
-        <li v-on:click="clickedTheme('economie')" :class="[selectedThemes.includes('economie') ? 'activeBtn' : '' , 'button']" id="economie" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro')">
+        <li v-on:click="clickedTheme('economie')" :class="[selectedThemes.includes('economie') ? 'activeBtn' : '' , 'button']" id="economie" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lePoint')">
           Economie
         </li>
-        <li v-on:click="clickedTheme('planete')" :class="[selectedThemes.includes('planete') ? 'activeBtn' : '' , 'button']" id="planete" v-if="selectedSources.includes('20minutes')">
+        <li v-on:click="clickedTheme('planete')" :class="[selectedThemes.includes('planete') ? 'activeBtn' : '' , 'button']" id="planete" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lexpress')">
           Planète
         </li>
         <li v-on:click="clickedTheme('insolite')" :class="[selectedThemes.includes('insolite') ? 'activeBtn' : '' , 'button']" id="insolite" v-if="selectedSources.includes('20minutes')">
@@ -38,10 +44,10 @@
         <li v-on:click="clickedTheme('desintox')" :class="[selectedThemes.includes('desintox') ? 'activeBtn' : '' , 'button']" id="desintox" v-if="selectedSources.includes('20minutes') || selectedSources.includes('leFigaro')">
           desintox
         </li>
-        <li v-on:click="clickedTheme('high-tech')" :class="[selectedThemes.includes('high-tech') ? 'activeBtn' : '' , 'button']" id="high-tech" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') ||selectedSources.includes('leFigaro')">
+        <li v-on:click="clickedTheme('high-tech')" :class="[selectedThemes.includes('high-tech') ? 'activeBtn' : '' , 'button']" id="high-tech" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           High-tech
         </li>
-        <li v-on:click="clickedTheme('sciences')" :class="[selectedThemes.includes('sciences') ? 'activeBtn' : '' , 'button']" id="sciences" v-if="selectedSources.includes('leFigaro')">
+        <li v-on:click="clickedTheme('sciences')" :class="[selectedThemes.includes('sciences') ? 'activeBtn' : '' , 'button']" id="sciences" v-if="selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           Sciences
         </li>
         <li v-on:click="clickedTheme('finance')" :class="[selectedThemes.includes('finance') ? 'activeBtn' : '' , 'button']" id="finance" v-if="selectedSources.includes('lesEchos')">
@@ -50,8 +56,11 @@
         <li v-on:click="clickedTheme('bourse')" :class="[selectedThemes.includes('bourse') ? 'activeBtn' : '' , 'button']" id="bourse" v-if="selectedSources.includes('lesEchos')">
           Bourse
         </li>
-        <li v-on:click="clickedTheme('politique')" :class="[selectedThemes.includes('politique') ? 'activeBtn' : '' , 'button']" id="politique" v-if="selectedSources.includes('lesEchos')">
+        <li v-on:click="clickedTheme('politique')" :class="[selectedThemes.includes('politique') ? 'activeBtn' : '' , 'button']" id="politique" v-if="selectedSources.includes('lesEchos') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           Politique
+        </li>
+        <li v-on:click="clickedTheme('idee-debats')" :class="[selectedThemes.includes('idee-debats') ? 'activeBtn' : '' , 'button']" id="idee-debats" v-if="selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
+          Idée - débats
         </li>
       </ul>
     </div>
@@ -154,9 +163,10 @@ export default {
     margin-top : 4rem;
     position : relative;
     height : 80vh;
-    width : 80vw;
+    width : 85vw;
     max-width : 1000px;
     overflow-y: auto;
+    padding :  0 0.9rem;
     h3 {
       font-size : 1rem;
       width : 100%;
@@ -168,9 +178,10 @@ export default {
       position: relative;
       display: flex;
       flex-wrap: wrap;
-      li {
-        margin : 0.5rem;
-      }
+      gap : 1.2rem;
+      // li {
+      //   margin : 0.5rem;
+      // }
     }
   }
     .next-button {

@@ -86,22 +86,27 @@ export default {
                 align-items: center;
                 justify-content: space-between;
                 border-bottom : 3px solid #f1f3f6;
-                padding-inline: 1rem;
                 a {
+                    padding-left: 1rem;
+                    padding-top : 1.7rem;
                     color: #2c3e50;
+                    height : 100%;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow : ellipsis;
-                    width : 70vw;
+                    width : 80vw;
                     text-decoration: none;
                     &:visited {
                         color :#b4b7b9;
                     }
                 }
                 button {
-                    background: transparent;
+                    background: #FF6961;
+                    height : 100%;
+                    padding-right : 1.7rem;
+                    padding-left : 1.7rem;
                     border : none;
-                    color : #FF6961;
+                    color : white;
                     font-size : 1.5rem;
                     cursor: pointer;
                 }

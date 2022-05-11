@@ -4,6 +4,7 @@
     <articlesDisplayer />
     <actionButtons />
     <loadingSpinner v-if="status == 'loading'"/>
+    <notification v-if="notification == true"/>
   </div>
 </template>
 
@@ -14,12 +15,14 @@ import articlesDisplayer from '@/components/articlesDisplayerComponent.vue'
 import loadingSpinner from '@/components/loadingSpinnerComponent.vue'
 import headerComponent from '@/components/headerComponent.vue'
 import actionButtons from '@/components/actionButtonsComponent.vue'
+import notification from '@/components/notificationComponent.vue'
 
 export default {
   name: 'Actu',
   computed: {
     ...mapState({
       status: "status",
+      notification: "notification"
     }),
   },
   mounted() {
@@ -33,6 +36,7 @@ export default {
     loadingSpinner,
     headerComponent,
     actionButtons,
+    notification,
   },
 }
 </script>

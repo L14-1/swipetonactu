@@ -8,11 +8,14 @@
         <!-- <img :src="'../assets/' + article.source + '-logo.png'" :alt="'logo de ' + article.source" class="source-logo"> -->
         <img src="../assets/20minutes-logo.png" alt="logo 20 minutes" class="source-logo" v-if="article.source == '20minutes'">
         <img src="../assets/leFigaro-logo.png" alt="logo le Figaro" class="source-logo" v-if="article.source == 'leFigaro'">
-        <img src="../assets/lesEchos-logo.png" alt="logo les Echos" class="source-logo" v-if="article.source == 'lesEchos'">
+        <img src="../assets/lesEchos-logo.jpg" alt="logo les Echos" class="source-logo" v-if="article.source == 'lesEchos'">
+        <img src="../assets/lexpress-logo.png" alt="logo l'Express" class="source-logo" v-if="article.source == 'lexpress'">
+        <img src="../assets/lePoint-logo.jpg" alt="logo le Point" class="source-logo" v-if="article.source == 'lePoint'">
+        
         <p class="un-displayed">{{article.url}}</p>
       </div>
     </div>
-    <div v-if="savedArticles && savedArticles.length != 0" class="notification"></div>
+    <div v-if="(savedArticles && savedArticles.length != 0) || notification" class="notification"></div>
     <div class="end-message">
         <h3>C'est fini ...😞</h3>
         <p>Revenez plus tard pour de nouvelles actus !</p>
@@ -35,6 +38,7 @@ export default {
   computed: {
     ...mapState({
       returnedArticles: "returnedArticles",
+      notification: "notification"
     }),
   },
   mounted() {
@@ -100,6 +104,13 @@ export default {
                         url,
                     });
                     window.localStorage.setItem('savedArticles', JSON.stringify(this.savedArticles))
+                    let likedArticle = [];
+                    likedArticle.push({
+                        title,
+                        url,
+                    });
+                    this.$store.commit('likedArticle', likedArticle);
+                    this.$store.commit('notification');
                 }, "400")
             } else if (posX < -150) {
                 card.classList.add('disliked-card')
@@ -112,8 +123,6 @@ export default {
                 card.classList.add('resetPos-card')
             }
         }
-
-        // console.log(card.children[0].children[4].innerText)
 
       }
   }

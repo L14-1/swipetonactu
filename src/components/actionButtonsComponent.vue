@@ -45,6 +45,13 @@ export default {
             });
         window.localStorage.setItem('savedArticles', JSON.stringify(this.savedArticles))
         }, "400")
+        let likedArticle = [];
+        likedArticle.push({
+            title,
+            url,
+        });
+        this.$store.commit('likedArticle', likedArticle);
+        this.$store.commit('notification');
         
     },
     dislike: function () {
@@ -81,7 +88,8 @@ export default {
     .button-style {
         width : 4.5rem;
         height: 4.5rem;
-        margin-inline : 2rem;
+        margin-right : 2rem;
+        margin-left : 2rem;
         border-radius: 50%;
         display: flex;
         justify-content: center;

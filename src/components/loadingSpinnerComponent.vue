@@ -40,7 +40,7 @@ export default {
             background: white;
             width : 80vw;
             max-width : 22rem;
-            height : 50vh;
+            height : 51vh;
             max-height : 50rem;
             border-radius : 2rem;
             .img-loader {
@@ -52,7 +52,8 @@ export default {
                 height : 1rem;
                 border-radius: 2rem;
                 margin-top : 2rem;
-                margin-inline: auto;
+                margin-right: auto;
+                margin-left: auto;
             }
             .logo-loader {
                 width : 2.6rem;

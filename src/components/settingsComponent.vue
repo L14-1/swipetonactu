@@ -5,7 +5,7 @@
         <div class="main-buttons">
             <button class="button big-button"><font-awesome-icon icon="fa-solid fa-circle-info" />À propos</button>
             <button @click="deletehistory()" class="button big-button"><font-awesome-icon icon="fa-solid fa-trash" />Supprimer l'historique</button>
-            <button class="button big-button"><font-awesome-icon icon="fa-solid fa-envelope" />Contactez moi !</button>
+            <a href="mailto:nico.maitre@laposte.net" class="button big-button"><font-awesome-icon icon="fa-solid fa-envelope" />Contactez moi !</a>
         </div>
         <p class="credits">Nicolas Maitre - 2022</p>
     </div>
@@ -70,6 +70,10 @@ export default {
                 position : absolute;
                 left : 1.5rem;
             }
+        }
+        a {
+            text-decoration: none;
+            font-weight : 500;
         }
         .credits {
             position: absolute;
