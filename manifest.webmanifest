@@ -1,0 +1,15 @@
+{
+    "background_color": "purple",
+    "description": "Swipe the recents news on your smartphone",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "src/assets/logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "name": "Swipe News",
+    "short_name": "SwipeNews",
+    "start_url": "/swipetonactu/#/actu"
+  }
