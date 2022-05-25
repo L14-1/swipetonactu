@@ -1,9 +1,9 @@
-// module.exports = {
-//     publicPath: process.env.NODE_ENV === 'production'
-//     ? '/swipetonactu/'
-//     : '/'
-//   }
-
 module.exports = {
-  publicPath: '/'
-}
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/swipetonactu/'
+    : '/'
+  }
+
+// module.exports = {
+//   publicPath: '/'
+// }

@@ -157,7 +157,8 @@ export default {
   h1 {
     position : absolute;
     top : 2rem;
-    right : 2rem;
+    right : 50%;
+    transform: translateX(50%);
   }
   .choice-container {
     margin-top : 4rem;
@@ -178,25 +179,26 @@ export default {
       position: relative;
       display: flex;
       flex-wrap: wrap;
-      gap : 1.2rem;
-      // li {
-      //   margin : 0.5rem;
-      // }
+      // gap : 1.2rem;
+      li {
+        margin-right : 1rem;
+        margin-bottom : 1rem;
+      }
     }
   }
     .next-button {
       cursor: pointer;
-      position : fixed;
-      bottom : 4rem;
-      right : 4rem;
+      position : absolute;
+      top : 2rem;
+      right : 2rem;
       background : transparent;
 
       padding : 0.4rem;
       border-radius : 50%;
-      font-size : 1.7rem;
+      font-size : 1.3rem;
       color: #2c3e50;
-      width : 3.4rem;
-      height  : 3.4rem;
+      width : 3rem;
+      height  : 3rem;
     }
 }
 
