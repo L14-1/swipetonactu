@@ -5,61 +5,61 @@
     <div class="choice-container">
       <h3>Choisissez vos sources 😄</h3>
       <ul>
-        <li v-on:click="clickedSource('20minutes')" :class="[selectedSources.includes('20minutes') ? 'activeBtn' : '' , 'button']" id="20minutes">
+        <li v-on:click="clickedSource('20minutes')" :class="[selectedSources.includes('20minutes') ? 'source--button__active' : '' , 'source--button']" id="20minutes">
           20 minutes
         </li>
-        <li v-on:click="clickedSource('lesEchos')" :class="[selectedSources.includes('lesEchos') ? 'activeBtn' : '' , 'button']" id="lesEchos">
+        <li v-on:click="clickedSource('lesEchos')" :class="[selectedSources.includes('lesEchos') ? 'source--button__active' : '' , 'source--button']" id="lesEchos">
           Les Echos
         </li>
-        <li v-on:click="clickedSource('leFigaro')" :class="[selectedSources.includes('leFigaro') ? 'activeBtn' : '' , 'button']" id="leFigaro">
+        <li v-on:click="clickedSource('leFigaro')" :class="[selectedSources.includes('leFigaro') ? 'source--button__active' : '' , 'source--button']" id="leFigaro">
           Le Figaro
         </li>
-        <li v-on:click="clickedSource('lexpress')" :class="[selectedSources.includes('lexpress') ? 'activeBtn' : '' , 'button']" id="lexpress">
+        <li v-on:click="clickedSource('lexpress')" :class="[selectedSources.includes('lexpress') ? 'source--button__active' : '' , 'source--button']" id="lexpress">
           L'Express
         </li>
-        <li v-on:click="clickedSource('lePoint')" :class="[selectedSources.includes('lePoint') ? 'activeBtn' : '' , 'button']" id="lePoint">
+        <li v-on:click="clickedSource('lePoint')" :class="[selectedSources.includes('lePoint') ? 'source--button__active' : '' , 'source--button']" id="lePoint">
           le Point
         </li>
       </ul>
       <h3 v-if="selectedSources.length != 0">... et vos thèmes !</h3>
       <ul>
-        <li v-on:click="clickedTheme('actu-generale')" :class="[selectedThemes.includes('actu-generale') ? 'activeBtn' : '' , 'button']" id="actu-generale" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos')">
+        <li v-on:click="clickedTheme('actu-generale')" :class="[selectedThemes.includes('actu-generale') ? 'source--button__active' : '' , 'source--button']" id="actu-generale" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos')">
           Actu génèrale
         </li>
-        <li v-on:click="clickedTheme('sport')" :class="[selectedThemes.includes('sport') ? 'activeBtn' : '' , 'button']" id="sport" v-if="selectedSources.includes('20minutes') || selectedSources.includes('leFigaro')">
+        <li v-on:click="clickedTheme('sport')" :class="[selectedThemes.includes('sport') ? 'source--button__active' : '' , 'source--button']" id="sport" v-if="selectedSources.includes('20minutes') || selectedSources.includes('leFigaro')">
           Sport
         </li>
-        <li v-on:click="clickedTheme('entertainment')" :class="[selectedThemes.includes('entertainment') ? 'activeBtn' : '' , 'button']" id="entertainment" v-if="selectedSources.includes('20minutes')">
+        <li v-on:click="clickedTheme('entertainment')" :class="[selectedThemes.includes('entertainment') ? 'source--button__active' : '' , 'source--button']" id="entertainment" v-if="selectedSources.includes('20minutes')">
           Entertainment
         </li>
-        <li v-on:click="clickedTheme('economie')" :class="[selectedThemes.includes('economie') ? 'activeBtn' : '' , 'button']" id="economie" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lePoint')">
+        <li v-on:click="clickedTheme('economie')" :class="[selectedThemes.includes('economie') ? 'source--button__active' : '' , 'source--button']" id="economie" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lePoint')">
           Economie
         </li>
-        <li v-on:click="clickedTheme('planete')" :class="[selectedThemes.includes('planete') ? 'activeBtn' : '' , 'button']" id="planete" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lexpress')">
+        <li v-on:click="clickedTheme('planete')" :class="[selectedThemes.includes('planete') ? 'source--button__active' : '' , 'source--button']" id="planete" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lexpress')">
           Planète
         </li>
-        <li v-on:click="clickedTheme('insolite')" :class="[selectedThemes.includes('insolite') ? 'activeBtn' : '' , 'button']" id="insolite" v-if="selectedSources.includes('20minutes')">
+        <li v-on:click="clickedTheme('insolite')" :class="[selectedThemes.includes('insolite') ? 'source--button__active' : '' , 'source--button']" id="insolite" v-if="selectedSources.includes('20minutes')">
           insolite
         </li>
-        <li v-on:click="clickedTheme('desintox')" :class="[selectedThemes.includes('desintox') ? 'activeBtn' : '' , 'button']" id="desintox" v-if="selectedSources.includes('20minutes') || selectedSources.includes('leFigaro')">
+        <li v-on:click="clickedTheme('desintox')" :class="[selectedThemes.includes('desintox') ? 'source--button__active' : '' , 'source--button']" id="desintox" v-if="selectedSources.includes('20minutes') || selectedSources.includes('leFigaro')">
           desintox
         </li>
-        <li v-on:click="clickedTheme('high-tech')" :class="[selectedThemes.includes('high-tech') ? 'activeBtn' : '' , 'button']" id="high-tech" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
+        <li v-on:click="clickedTheme('high-tech')" :class="[selectedThemes.includes('high-tech') ? 'source--button__active' : '' , 'source--button']" id="high-tech" v-if="selectedSources.includes('20minutes') || selectedSources.includes('lesEchos') || selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           High-tech
         </li>
-        <li v-on:click="clickedTheme('sciences')" :class="[selectedThemes.includes('sciences') ? 'activeBtn' : '' , 'button']" id="sciences" v-if="selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
+        <li v-on:click="clickedTheme('sciences')" :class="[selectedThemes.includes('sciences') ? 'source--button__active' : '' , 'source--button']" id="sciences" v-if="selectedSources.includes('leFigaro') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           Sciences
         </li>
-        <li v-on:click="clickedTheme('finance')" :class="[selectedThemes.includes('finance') ? 'activeBtn' : '' , 'button']" id="finance" v-if="selectedSources.includes('lesEchos')">
+        <li v-on:click="clickedTheme('finance')" :class="[selectedThemes.includes('finance') ? 'source--button__active' : '' , 'source--button']" id="finance" v-if="selectedSources.includes('lesEchos')">
           Finance
         </li>
-        <li v-on:click="clickedTheme('bourse')" :class="[selectedThemes.includes('bourse') ? 'activeBtn' : '' , 'button']" id="bourse" v-if="selectedSources.includes('lesEchos')">
+        <li v-on:click="clickedTheme('bourse')" :class="[selectedThemes.includes('bourse') ? 'source--button__active' : '' , 'source--button']" id="bourse" v-if="selectedSources.includes('lesEchos')">
           Bourse
         </li>
-        <li v-on:click="clickedTheme('politique')" :class="[selectedThemes.includes('politique') ? 'activeBtn' : '' , 'button']" id="politique" v-if="selectedSources.includes('lesEchos') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
+        <li v-on:click="clickedTheme('politique')" :class="[selectedThemes.includes('politique') ? 'source--button__active' : '' , 'source--button']" id="politique" v-if="selectedSources.includes('lesEchos') || selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           Politique
         </li>
-        <li v-on:click="clickedTheme('idee-debats')" :class="[selectedThemes.includes('idee-debats') ? 'activeBtn' : '' , 'button']" id="idee-debats" v-if="selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
+        <li v-on:click="clickedTheme('idee-debats')" :class="[selectedThemes.includes('idee-debats') ? 'source--button__active' : '' , 'source--button']" id="idee-debats" v-if="selectedSources.includes('lexpress') || selectedSources.includes('lePoint')">
           Idée - débats
         </li>
       </ul>
@@ -145,7 +145,7 @@ export default {
   .setting-button {
     position : absolute;
     top : 2rem;
-    left : 2rem;
+    left : 1rem;
     width : 3rem;
     height: 3rem;
     border-radius: 50%;
@@ -157,17 +157,15 @@ export default {
   h1 {
     position : absolute;
     top : 2rem;
-    right : 50%;
-    transform: translateX(50%);
+    right : 2rem;
   }
   .choice-container {
     margin-top : 4rem;
     position : relative;
     height : 80vh;
-    width : 85vw;
+    width : 95vw;
     max-width : 1000px;
-    overflow-y: auto;
-    padding :  0 0.9rem;
+    padding : 0 0.9rem;
     h3 {
       font-size : 1rem;
       width : 100%;
@@ -179,17 +177,34 @@ export default {
       position: relative;
       display: flex;
       flex-wrap: wrap;
+      overflow-y: auto;
+      max-height : 35vh;
+      // &:last-child {
+      //   box-shadow : inset 0 -25px 15px #f1f3f6;
+      //   border-bottom : 2px solid #f1f3f6;
+      // }
       // gap : 1.2rem;
       li {
+        //z-index : -1;
         margin-right : 1rem;
         margin-bottom : 1rem;
+      }
+    }
+    .source--button {
+      display : flex;
+      align-items : center;
+      padding : 0.5rem;
+      border-radius: 20px;
+      border : 2px solid #777a7d;
+      &__active {
+        border-color: #77DD77;
       }
     }
   }
     .next-button {
       cursor: pointer;
       position : absolute;
-      top : 2rem;
+      bottom : 2rem;
       right : 2rem;
       background : transparent;
 

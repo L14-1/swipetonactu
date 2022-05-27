@@ -40,8 +40,8 @@ export default {
             background: white;
             width : 80vw;
             max-width : 22rem;
-            height : 51vh;
-            max-height : 50rem;
+            height : 62vh;
+            max-height : 55rem;
             border-radius : 2rem;
             .img-loader {
                 width : 100%;

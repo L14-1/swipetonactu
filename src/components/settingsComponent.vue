@@ -36,7 +36,7 @@ export default {
         .back-button {
             position : absolute;
             top : 2rem;
-            left : 2rem;
+            left : 1rem;
             width : 3rem;
             height: 3rem;
             border-radius: 50%;

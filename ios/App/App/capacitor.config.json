@@ -1,0 +1,6 @@
+{
+	"appId": "com.nicolasmaitre.swipenews",
+	"appName": "swipe-news",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

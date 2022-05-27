@@ -175,8 +175,8 @@ export default {
             background: white;
             width : 80vw;
             max-width : 22rem;
-            height : 50vh;
-            max-height : 50rem;
+            height : 61vh;
+            max-height : 55rem;
             border-radius : 2rem;
             .article-img {
                 margin-inline : auto;
