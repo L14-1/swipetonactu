@@ -1,5 +1,5 @@
 {
-    "background_color": "purple",
+    "background_color": "white",
     "description": "Swipe the recents news on your smartphone",
     "display": "fullscreen",
     "icons": [
@@ -11,5 +11,5 @@
     ],
     "name": "Swipe News",
     "short_name": "SwipeNews",
-    "start_url": "/swipetonactu/#/"
+    "start_url": "/"
   }
